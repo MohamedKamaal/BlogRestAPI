@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404
 from profiles.serializers import ProfileOutSerializer
-from rest_framework.generics import RetrieveUpdateDestroyAPIView, ListAPIView, GenericAPIView
+from rest_framework.views import APIView
+from rest_framework.generics import RetrieveUpdateDestroyAPIView, ListAPIView
 from rest_framework.permissions import IsAuthenticated
 from profiles.models import Profile
 from profiles.exceptions import CantFollowYourself
@@ -35,7 +36,7 @@ class ProfileListAPIView(ListAPIView):
     permission_classes = [IsAuthenticated]
 
 
-class FollowAPIView(GenericAPIView):
+class FollowAPIView(APIView):
     """API endpoint for following another user's profile.
     
     POST /profiles/<profile_id>/follow/
@@ -66,7 +67,7 @@ class FollowAPIView(GenericAPIView):
         )
 
 
-class UnFollowAPIView(GenericAPIView):
+class UnFollowAPIView(APIView):
     """API endpoint for unfollowing a user's profile.
     
     POST /profiles/<profile_id>/unfollow/
