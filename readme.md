@@ -67,8 +67,8 @@ Follow these steps to get the project running locally:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/MohamedKamaal/blogging-platform-api
-cd blogging-platform-api
+git clone https://github.com/MohamedKamaal/BlogRestAPI
+cd BlogRestAPI
 ```
 ### 2. Set up a virtual environment
 
