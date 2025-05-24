@@ -3,6 +3,10 @@
 A blogging REST API that enables users to register, log in, and interact with articles by viewing, creating, rating, commenting, clapping, and bookmarking them. Additionally, users can follow others, view their followers and following lists, and engage in a community of bloggers.
 
 
+## Demo
+
+https://blogging-platform-api-3xqk.onrender.com/
+
 
 ## Features
 
@@ -54,29 +58,62 @@ A blogging REST API that enables users to register, log in, and interact with ar
 
 ## Installation
 
+## Prerequisites
+- Python 3.8+
+- Git
+- pip
 Follow these steps to get the project running locally:
 
 ### 1. Clone the repository
 
 ```bash
 git clone https://github.com/MohamedKamaal/blogging-platform-api
-cd blog
-pip install -r requirements.txt
+cd blogging-platform-api
+```
+### 2. Set up a virtual environment
+
+```bash
+python -m venv venv
+```
+### 3. Activate the virtual environment
+A- Windows:
+
+```bash
+.\venv\Scripts\activate
 ```
 
-### 2. Apply database migrations
+B- macOS/Linux:
+
+```bash
+source venv/bin/activate
+```
+### 4. Apply database migrations
 ```bash
 python manage.py makemigrations
 python manage.py migrate
 ```
-### 3. Run the development server
+
+### 5. Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 6. Run the development server
 ```bash
 python manage.py runserver
 ```
-### 4. Access API documentation
+### 7. Access API documentation
 ```bash
 http://localhost:8000/redoc/
+http://localhost:8000/swagger/
 ```
+
+
+## To create a superuser (admin account)
+```bash
+python manage.py createsuperuser
+```
+
 ## Running Tests
 
 To run tests, run the following command
@@ -84,11 +121,5 @@ To run tests, run the following command
 ```bash
   pytest 
 ```
-
-
-## Demo
-
-
-https://blogging-platform-api-3xqk.onrender.com/
 
 
