@@ -14,7 +14,7 @@ from pathlib import Path
 import os
 from datetime import timedelta
 from decouple import config, Csv
-import dj_database_url
+
 # ========================
 #  PATH CONFIGURATION
 # ========================
@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # ========================
 #  SECURITY CONFIGURATION
 # ========================
-SECRET_KEY = config("SECRET_KEY")  # No default for security
+SECRET_KEY = 'django-insecure-temporary-key-for-migrations-only'  #Change for production
 DEBUG = config("DEBUG", default=True, cast=bool)
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'blogging-platform-api-3xqk.onrender.com']
+ALLOWED_HOSTS = ['*'] #change for
 # ========================
 #  APPLICATION DEFINITION
 # ========================
@@ -63,15 +63,14 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -100,18 +99,13 @@ TEMPLATES = [
 # ========================
 #  DATABASE CONFIGURATION
 # ========================
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
-else:
-    # For production (uncomment and configure as needed)
-    DATABASES = {
-        'default': dj_database_url.config(default=config('DATABASE_URL'))
-    }
+}
 
 # ========================
 #  AUTHENTICATION CONFIGURATION
@@ -211,7 +205,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [BASE_DIR / 'static']
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
